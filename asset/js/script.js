@@ -39,6 +39,8 @@ let cardContent = document.getElementById("card-content")
 let Bool = false;
 //array list text for search
 let arrayText;
+////array list for append next reload
+let appendReload;
 
 
 //output
@@ -161,12 +163,15 @@ btnAddTask.addEventListener("click", (event) => {
                 }
             }
         });
-
+        localStorage.setItem("ullist", collection.innerHTML);
         //METHOD for remove collection-item
-        spnRemove.addEventListener("click", () => {
+        spnRemove.addEventListener("click", (event) => {
             if (confirm("آیا این یادداشت حذف شود")) {
                 spnRemove.parentElement.remove();
                 aRemoveOneTask.play();
+
+                localStorage.setItem("ullist" , collection.innerHTML);
+                
             } else {
                 aDontRemoveThisTask.play();
             }
@@ -179,13 +184,7 @@ btnAddTask.addEventListener("click", (event) => {
         // }
         // arrayText.push(cardTitle.innerHTML);
         // localStorage.setItem("searchitem",JSON.stringify(arrayText));
-        if (localStorage.getItem("arrtext") == null) {
-            arrayText = [];
-        } else {
-            arrayText = JSON.parse(localStorage.getItem("arrtext"));
-        }
-        arrayText.push({ title: cardTitle.innerHTML, body: cardBody.innerHTML, datere: spndate.innerHTML });
-        localStorage.setItem("arrtext", JSON.stringify(arrayText))
+
         titleTask.value = "";
         txtArea.value = "";
 
@@ -205,106 +204,63 @@ clearAllTask.addEventListener('click', () => {
         aDontRemoveallTask.play();
     }
 })
+
 searchTask.addEventListener("keyup", (e) => {
-    if (localStorage.getItem("arrtext") != null) {
-        arrayText = JSON.parse(localStorage.getItem("arrtext"));
-        arrayText.forEach((element, number) => {
-            if (arrayText[number].body.indexOf(searchTask.value) != "-1" || arrayText[number].title.indexOf(searchTask.value) != "-1") {
-                collection.children[number].style.display = "block";
-            } else {
-                collection.children[number].style.display = "none";
-            }
-        });
-    } else {
-        alert("شما یادداشتی برای جستجو درج نکرده اید")
+    arrayText = collection.children;
+    let mysearch = searchTask.value.toLowerCase();
+    for (let index = 0; index < (arrayText.length); index++) {
+        const element = arrayText[index].innerHTML.toLowerCase();
+        if (element.indexOf(mysearch) != "-1"){
+            collection.children[index].style.display = "block";
+        }else if(element.indexOf(mysearch) == "-1"){
+            collection.children[index].style.display = "none";
+        }else{
+            collection.children[0].style.display = "block"
+        }
     }
 });
 
 window.addEventListener("load", () => {
-    if (localStorage.getItem("arrtext") != null) {
-        let cardElement = document.createElement("li");
-        let cardTitle = document.createElement("h3");
-        let cardBody = document.createElement("p");
-        let spnRemove = document.createElement("span");
-        let spnToggle = document.createElement("span");
-        let spndate = document.createElement("span");
-        let mydater = new Date();
-        arrayText = JSON.parse(localStorage.getItem("arrtext"));
-        //add a class for element
-        cardElement.classList.add("collection-item");
-        spnRemove.classList.add("spn-remove");
-        spnToggle.classList.add("spn-toggle");
-        spndate.classList.add("dater");
-        arrayText.forEach((element, number) => {
-            cardTitle.innerHTML = arrayText[number].title;
-            cardBody.innerHTML = `<pre>${arrayText[number].body}</pre>`;
-            spndate.innerHTML = arrayText[number].datere;
-        });
-        //set a innerHTML
-        spnRemove.innerHTML = "&times;";
-        //append a elemeents
-        spnToggle.appendChild(document.createTextNode("+"));
-        cardElement.appendChild(cardTitle);
-        cardElement.appendChild(cardBody);
-        cardElement.appendChild(spnRemove);
-        cardElement.appendChild(spnToggle);
-        cardElement.appendChild(spndate);
-        collection.appendChild(cardElement);
+    if (localStorage.getItem("ullist") != null) {
+        let getsItem = localStorage.getItem("ullist");
+        let spnToggle = collection.getElementsByClassName("spn-toggle");
+        let spnRemove = document.getElementsByClassName('spn-remove');
+        //METHOD for toggle body collection-item 1,3
+        collection.innerHTML = getsItem;
 
-        //output top codes method
-        /* 
-                <li class="collection-item">
-                    <h3>collection</h3>
-                    <p>
-                        hello im amirrerza
-                    </p>
-                    <span class="spn-remove">&times;</span>
-                    <span class="spn-toggle">+</span>
-                </li>
-        */
-
-        //METHOD for toggle body collection-item
-        spnToggle.addEventListener("click", (event) => {
-            switch (Bool) {
-                case false: {
-                    spnToggle.parentElement.children[1].style.display = "block";
-                    spnToggle.innerHTML = '-';
-                    spnToggle.style.color = "red"
-                    Bool = true;
-                    break;
+        for(let x = 0 ; x < spnRemove.length ; x++){
+            spnRemove[x].addEventListener("click",(e) => {
+                if (confirm("آیا این یادداشت حذف شود")) {
+                    e.target.parentElement.remove();
+                    aRemoveOneTask.play();
+                    localStorage.setItem("ullist" , collection.innerHTML);
+                } else {
+                    aDontRemoveThisTask.play();
                 }
-                case true: {
-                    spnToggle.parentElement.children[1].style.display = "none";
-                    spnToggle.innerHTML = "+";
-                    spnToggle.style.color = "rgb(103, 214, 103)"
-                    Bool = false;
-                    break;
-                }
-            }
-        });
+            })
+        }
 
-        //METHOD for remove collection-item
-        spnRemove.addEventListener("click", () => {
-            if (confirm("آیا این یادداشت حذف شود")) {
-                spnRemove.parentElement.remove();
-                arrayText = JSON.parse(localStorage.getItem("arrtext"));
-                arrayText.forEach((element, number) => {
-                    if (arrayText[number].title == spnRemove.parentElement.children[0].innerHTML) {
-                        arrayText = arrayText.slice(number, number);
-                        console.log(arrayText);
-                    };
-                    localStorage.setItem("arrtext", JSON.stringify(arrayText));
-                });
-                aRemoveOneTask.play();
-            } else {
-                aDontRemoveThisTask.play();
-            }
-        });
+        for (let x = 0; x < spnToggle.length; ++x) {
+            spnToggle[x].style.display = "none";
+            spnToggle[x].addEventListener("click", () => {
+                switch (Bool) {
+                    case false: {
+                        spnToggle[x].parentElement.children[2].style.display = "block";
+                        spnToggle[x].innerHTML = '-';
+                        spnToggle[x].style.color = "red";
+                        Bool = true;
+                        break;
+                    }
+                    case true: {
+                        spnToggle[x].parentElement.children[2].style.display = "none";
+                        spnToggle[x].innerHTML = "+";
+                        spnToggle[x].style.color = "rgb(103, 214, 103)"
+                        Bool = false;
+                        break;
+                    }
+                }
+            });
+        }
     }
 
-
-    // if remove one my one & has remove all task first child collection is remove
-    if (collection.firstChild.children[0].innerHTML == "" && collection.firstChild.children[1].innerHTML == "") {
-        collection.firstChild.remove();
-    }
 })

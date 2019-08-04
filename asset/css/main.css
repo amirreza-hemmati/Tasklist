@@ -52,6 +52,14 @@ body{
     display: none;
 }
 
+.collection-item > pre{
+    display: none;
+}
+
+.collection-item > span{
+    display: block !important;
+}
+
 .bg-danger{
     color: rgb(255, 255, 255);
     /* background-color: rgb(211, 183, 26); */
