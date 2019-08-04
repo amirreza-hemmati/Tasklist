@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    
+    <head>
+    <meta charset="UTF-8">
+    <title>Task Project</title>
+    <link rel="stylesheet" href="asset/css/materialize.css" />
+    <link rel="stylesheet" href="asset/css/main.css" />
+</head>
+
+<body>
+    <div class="card">
+        <div class="card-content" id="card-content">
+            
+            <div class="card-title right-align">
+                افزودن یادداشت
+            </div>
+            <br>
+            <p class="bg-danger right-align red">پرکردن بدنه یادداشت الزامی میباشد</p>
+            <form action="index.php">
+                <div class="input-field">
+                    <input id="title-task" type="text" class="validate">
+                    <label for="add-task">لطفا عنوان یادداشت را وارد نمایید</label>
+                </div>
+                <p class="bg-danger right-align red">پرکردن بدنه یادداشت الزامی میباشد</p>
+                <div class="input-field">
+                    <textarea id="txtarea" required></textarea>
+                    <label for="txtarea">لطفا بدنه یادداشت را وارد نمایید</label>
+                </div>
+            </form>
+            
+            <button type="button" id="btn-add-task" class="waves-effect waves-light btn">افزودن یادداشت</button>
+        </div>
+            <div class="card-content">
+                <div class="card-title right-align">
+                    یادداشت های من
+                </div>
+                <div class="input-field">
+                    <input id="search-task" type="text" class="validate" required>
+                    <label for="search-task">لطفا عنوان یادداشت را برای جستجو وارد نمایید جستجو براساس متن بدنه و عنوان</label>
+                </div>
+            <p class="bg-danger right-align red">پرکردن بدنه یادداشت الزامی میباشد</p>
+            
+            <button type="button" id="btn-clear-task" class="waves-effect grey darken-4 btn">پاک کردن یادداشت ها</button>
+            
+            <br>
+            
+            <ul class="collection" id="ulist"></ul>
+        </div>
+    </div>
+ 
+    <!-- all audios -->
+    <audio src="asset/audio/speech.mp3" id="audio-play"></audio>
+    <audio src="asset/audio/removealltask.mp3" id="audio-remove-all"></audio>
+    <audio src="asset/audio/dontremovealltask.mp3" id="dont-remove-all-task"></audio>
+    <audio src="asset/audio/removeThisTask.mp3" id="remove-this-task"></audio>
+    <audio src="asset/audio/dont-remove-this-task.mp3" id="dont-remove-this-task"></audio>
+    <audio src="asset/audio/titleBodyTask.mp3" id="aNullBodyTitle"></audio>
+    <audio src="asset/audio/titleTask.mp3" id="a-null-title-task"></audio>
+    <audio src="asset/audio/bodyTask.mp3" id="a-null-body-task"></audio>
+    <!-- materialize -->
+    <script src="asset/js/materialize.js"></script>
+    <!-- vanilla js -->
+    <script src="asset/js/script.js"></script>
+</body>
+
+</html>
