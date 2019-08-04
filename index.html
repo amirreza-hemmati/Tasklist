@@ -10,46 +10,53 @@
 </head>
 
 <body>
-    <div class="card">
-        <div class="card-content" id="card-content">
-            
-            <div class="card-title right-align">
-                افزودن یادداشت
-            </div>
-            <br>
-            <p class="bg-danger right-align red">پرکردن بدنه یادداشت الزامی میباشد</p>
-            <form action="index.php">
-                <div class="input-field">
-                    <input id="title-task" type="text" class="validate">
-                    <label for="add-task">لطفا عنوان یادداشت را وارد نمایید</label>
-                </div>
-                <p class="bg-danger right-align red">پرکردن بدنه یادداشت الزامی میباشد</p>
-                <div class="input-field">
-                    <textarea id="txtarea" required></textarea>
-                    <label for="txtarea">لطفا بدنه یادداشت را وارد نمایید</label>
-                </div>
-            </form>
-            
-            <button type="button" id="btn-add-task" class="waves-effect waves-light btn">افزودن یادداشت</button>
-        </div>
-            <div class="card-content">
+    <div>
+        <div class="card">
+            <div class="card-content" id="card-content">
+                
                 <div class="card-title right-align">
-                    یادداشت های من
+                    افزودن یادداشت
                 </div>
-                <div class="input-field">
-                    <input id="search-task" type="text" class="validate" required>
-                    <label for="search-task">لطفا عنوان یادداشت را برای جستجو وارد نمایید جستجو براساس متن بدنه و عنوان</label>
-                </div>
-            <p class="bg-danger right-align red">پرکردن بدنه یادداشت الزامی میباشد</p>
-            
-            <button type="button" id="btn-clear-task" class="waves-effect grey darken-4 btn">پاک کردن یادداشت ها</button>
-            
-            <br>
-            
-            <ul class="collection" id="ulist"></ul>
+                <br>
+                <p class="bg-danger right-align red">پرکردن بدنه یادداشت الزامی میباشد</p>
+                <form action="index.php">
+                    <div class="input-field">
+                        <input id="title-task" type="text" class="validate">
+                        <label for="add-task">لطفا عنوان یادداشت را وارد نمایید</label>
+                    </div>
+                    <p class="bg-danger right-align red">پرکردن بدنه یادداشت الزامی میباشد</p>
+                    <div class="input-field">
+                        <textarea id="txtarea" required></textarea>
+                        <label for="txtarea">لطفا بدنه یادداشت را وارد نمایید</label>
+                    </div>
+                </form>
+                
+                <button type="button" id="btn-add-task" class="waves-effect waves-light btn">افزودن یادداشت</button>
+            </div>
+                <div class="card-content">
+                    <div class="card-title right-align">
+                        یادداشت های من
+                    </div>
+                    <div class="input-field">
+                        <input id="search-task" type="text" class="validate" required>
+                        <label for="search-task">لطفا عنوان یادداشت را برای جستجو وارد نمایید جستجو براساس متن بدنه و عنوان</label>
+                    </div>
+                <p class="bg-danger right-align red">پرکردن بدنه یادداشت الزامی میباشد</p>
+                
+                <button type="button" id="btn-clear-task" class="waves-effect grey darken-4 btn">پاک کردن یادداشت ها</button>
+                
+                <br>
+                
+                <ul class="collection" id="ulist"></ul>
+            </div>
         </div>
     </div>
- 
+    <br><br><br><br>
+    <footer id="footer">
+        <p>
+            کاری از امیررضا همتی
+        </p>
+    </footer>
     <!-- all audios -->
     <audio src="asset/audio/speech.mp3" id="audio-play"></audio>
     <audio src="asset/audio/removealltask.mp3" id="audio-remove-all"></audio>
