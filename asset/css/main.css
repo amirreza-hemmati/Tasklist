@@ -8,7 +8,7 @@ body > div{
 .card{
     margin-top: 20px;
     width: 700px;
-    height: 100%;
+    height:auto;
 }
 
 .input-field{
