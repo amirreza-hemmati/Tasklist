@@ -28,10 +28,22 @@ body > div{
     font-size: 20px;
 }
 
- .collection-item{
+.collection-item{
      position: relative;
      padding-top: 0;
-} 
+     overflow: auto;
+}
+
+.collection-item::-webkit-scrollbar{
+    background-color: #dfe4ea;
+    height: 10px;
+    border-radius: 10px;
+}
+
+.collection-item::-webkit-scrollbar-thumb{
+    background-color: #2f3542;
+    border-radius: 4px;
+}
 
 .collection-item > *{
     padding-left: 5px;
@@ -54,6 +66,8 @@ body > div{
 
 .collection-item > pre{
     display: none;
+    text-align: right;
+    font-size: 18px;
 }
 
 .collection-item > span{
